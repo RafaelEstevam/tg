@@ -6,28 +6,21 @@ export default createGlobalStyle`
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
+    font-size: 16px;
+    // opacity: ${(props) => 1 - ((props.theme.brightness / 100) * 2)}; /*brilho*/
+    filter: brightness(${(props) => 1 + ((props.theme.brightness / 100))}) contrast(${(props) => 1 + ((props.theme.contrast / 100))});
   }
 
   html{
-    font-size: 100%;
+    font-size: ${(props) => 1 + ((props.theme.fontSize / 10) * 2)}rem;
+    height: 100vh;
+    body, #root{
+      height: 100vh;
+    }
   }
 
-  body{
-    // font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  .nightMode{
     
-  }
-
-  ::-webkit-scrollbar-track {
-    background-color: #f5f5f5;
-  }
-  ::-webkit-scrollbar {
-    width: 5px;
-    background-color: transparent;
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: #aaa;
-    border: 2px solid transparent;
   }
 
 `;

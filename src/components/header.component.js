@@ -44,12 +44,13 @@ const Header = ({open, handleDrawerOpen, handleDrawerClose}) => {
   return (
     <>
       <AppBar
+        color="transparent"
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar style={{display: 'flex', justifyContent: 'space-between'}}>
+        <Toolbar  style={{display: 'flex', justifyContent: 'space-between'}}>
           <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
             <IconButton
               color="inherit"
@@ -92,7 +93,7 @@ const Header = ({open, handleDrawerOpen, handleDrawerClose}) => {
           </ListItemIcon>
           <ListItemText primary={"Dashboard"} />
         </ListItem> */}
-        <ListItem button onClick={() => {history.push("/kanban")}}>
+        {/* <ListItem button onClick={() => {history.push("/kanban")}}>
           <ListItemIcon>
             <DashboardIcon />
           </ListItemIcon>
@@ -123,7 +124,7 @@ const Header = ({open, handleDrawerOpen, handleDrawerClose}) => {
             <GroupIcon />
           </ListItemIcon>
           <ListItemText primary={"Perfil de usuário"} />
-        </ListItem>
+        </ListItem> */}
       </List>
       <Divider />
     </Drawer>

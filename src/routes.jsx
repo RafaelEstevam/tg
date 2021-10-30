@@ -34,7 +34,8 @@ const AdminRoutes = ({ component: Component, auth,  ...attrs }) => {
 
 const PrivateRoute = ({ component: Component, auth,  ...attrs }) => {
 
-  const token = getTokenInStorage();
+  // const token = getTokenInStorage();
+  const token = true;
 
   return token ? (
     <Route
