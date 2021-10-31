@@ -23,7 +23,7 @@ export default function PersistentDrawerLeft({ children }) {
 
   return (
     <>
-      <div style={{height: '100vh'}} className={accessibility.nightMode && 'nightMode'}>
+      <div style={{minHeight: '100vh'}} className={accessibility.nightMode && 'nightMode'}>
         <div className={classes.root}>
           <Header
             open={open}

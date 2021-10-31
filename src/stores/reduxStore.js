@@ -8,7 +8,7 @@ const accessibilityContext = {
     contrast: 0,
     brightness: 0,
     fontSize: 0,
-    nightMode: false
+    nightMode: true
 }
 
 const decode = {

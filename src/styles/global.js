@@ -20,7 +20,7 @@ export default createGlobalStyle`
   }
 
   .nightMode{
-    background: #333;
+    background: #2f2f38;
   }
 
 `;
