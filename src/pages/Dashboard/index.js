@@ -17,6 +17,7 @@ import ActivityComponent from 'components/activity.component';
 import MetricsComponent from 'components/metricsCarrossel.compoment';
 import MetricCardComponent from 'components/metricCard.component';
 import BarChartComponent from 'components/barChart.component';
+import CarrosselItemComponent from 'components/carrosselItem.component';
 
 import { AcUnitSharp } from '@material-ui/icons';
 
@@ -52,7 +53,10 @@ const ChartWrapper = styled('div')`
   align-items: center;
 `
 
-
+const carrosselList = [
+  {title: 'Teste', subtitle: '234', value: '435'},
+  {title: '234', subtitle: 'Teste', value: '435'}
+];
 
 function Home() {
 
@@ -60,18 +64,8 @@ function Home() {
   const tasksData = useSelector(state => state.task);
   const [taskList, setTaskList] = useState([]);
   const [open, setOpen] = React.useState(false);
-  const [carrosselItems] = useState(4);
+  const [carrosselItems] = useState(carrosselList.length);
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  // console.log(tasksData);
-
-  // const handleAddTask = () => {
-  //   dispatch({type: 'ADD_TASK', count: 1});
-  // }
-
-  // const handleRemoveTask = () => {
-  //   dispatch({type: 'REMOVE_TASK', count: 1});
-  // }
 
   const handleNext = () => {
     if (currentIndex + 1 < carrosselItems) {
@@ -141,43 +135,16 @@ function Home() {
             </Grid>
             <Grid item lg={6} xs={12}>
               <CustomCard height={'360px'}>
-                <CarrosselItem index={0} currentIndex={currentIndex}>
-                  <CardWrapper>
-                    <Typography>Tempo médio</Typography>
-                    <Typography>70 min</Typography>
-                    <Typography>Estudo da matéria</Typography>
-                  </CardWrapper>
-                </CarrosselItem>
-
-                <CarrosselItem index={1} currentIndex={currentIndex}>
-                  <CardWrapper>
-                    <Typography>Quantidade média</Typography>
-                    <Typography>5</Typography>
-                    <Typography>Atividades feitas por dia</Typography>
-                  </CardWrapper>
-                </CarrosselItem>
-
-                <CarrosselItem index={2} currentIndex={currentIndex}>
-                  <CardWrapper>
-                    <Typography>Quantidade média</Typography>
-                    <Typography>532</Typography>
-                    <Typography>Atividades feitas por dia</Typography>
-                  </CardWrapper>
-                </CarrosselItem>
-
-                <CarrosselItem index={3} currentIndex={currentIndex}>
-                  <CardWrapper>
-                    <Typography>Quantidade média</Typography>
-                    <Typography>5asdf</Typography>
-                    <Typography>Atividades feitas por dia</Typography>
-                  </CardWrapper>
-                </CarrosselItem>
-
+                {
+                  carrosselList.map((item, index) => (
+                    <CarrosselItemComponent key={index} title={item.title} subtitle={item.subtitle}
+                      value={item.value} index={index} currentIndex={currentIndex} />
+                  ))
+                }
                 <CarrosselButtons>
                   <Button onClick={() => handlePrev()}>Prev</Button>
                   <Button onClick={() => handleNext()}>Next</Button>
                 </CarrosselButtons>
-
               </CustomCard>
             </Grid>
             <Grid item lg={6} xs={12}>
