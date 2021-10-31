@@ -61,13 +61,11 @@ const Header = ({open, handleDrawerOpen, handleDrawerClose}) => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap>
-              To do App
-            </Typography>
           </div>
-          
-          <Button color="secondary" variant="contained" onClick={() => {handleLogout()}}>
-            Logout
+          <Typography variant="h6" noWrap>
+            Português
+          </Typography>
+          <Button color="secondary" size="small" variant="contained" onClick={() => {handleLogout()}}>
           </Button>
         </Toolbar>
       </AppBar>

@@ -4,6 +4,7 @@ import App from './App';
 import { Provider } from 'react-redux';
 import reduxStore from './stores/reduxStore';
 import { SnackbarProvider } from 'notistack';
+// import AccessibilityBar from './components/acessibilityBar.component'
 
 const store = reduxStore;
 
@@ -16,6 +17,7 @@ ReactDOM.render(
           horizontal: 'center',
         }}
       >
+        {/* <AccessibilityBar /> */}
         <App />
       </SnackbarProvider>
     </Provider>

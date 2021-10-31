@@ -9,10 +9,14 @@ const StyledAccessibilityBar = styled('div')`
     display: flex;
     background-color: #fc0;
     justify-content: space-around;
-    @media(max-width: 767px){
-        position: fixed;
-        bottom: 0px;
-    }
+    // position: fixed;
+    // top: 0;
+    // left: 0;
+    // -webkit-backface-visibility: hidden;
+    // @media(max-width: 767px){
+    //     position: fixed;
+    //     bottom: 0px;
+    // }
 `
 
 export default function AccessibilityBar() {

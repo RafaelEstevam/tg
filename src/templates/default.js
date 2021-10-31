@@ -23,26 +23,25 @@ export default function PersistentDrawerLeft({ children }) {
 
   return (
     <>
-    <div style={{height: '100vh'}} className={accessibility.nightMode && 'nightMode'}>
-      <AccessibilityBar />
-      <div className={classes.root}>
-        <Header
-          open={open}
-          handleDrawerOpen={handleDrawerOpen}
-          handleDrawerClose={handleDrawerClose}
-        />
-        <main
-          className={clsx(classes.content, {
-            [classes.contentShift]: open,
-          })}
-        >
-          <div className="brightness">
-            <div className={classes.drawerHeader} />
-            {children}
-          </div>
-        </main>
+      <div style={{height: '100vh'}} className={accessibility.nightMode && 'nightMode'}>
+        <div className={classes.root}>
+          <Header
+            open={open}
+            handleDrawerOpen={handleDrawerOpen}
+            handleDrawerClose={handleDrawerClose}
+          />
+          <main
+            className={clsx(classes.content, {
+              [classes.contentShift]: open,
+            })}
+          >
+            <div className="brightness">
+              <div className={classes.drawerHeader} />
+              {children}
+            </div>
+          </main>
+        </div>
       </div>
-    </div>
     </>
   );
 }
