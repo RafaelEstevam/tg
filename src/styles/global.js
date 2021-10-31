@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import {COLORS} from './colors';
 
 export default createGlobalStyle`
 
@@ -19,8 +20,56 @@ export default createGlobalStyle`
     }
   }
 
-  .nightMode{
-    background: #2f2f38;
+  .main-background{
+    background: ${COLORS.light1};
   }
+
+  .primary-background{
+    background: ${COLORS.primary};
+  }
+
+  .second-background{
+    background: ${COLORS.light0};
+  }
+
+  .primary-text{
+    color: ${COLORS.primary};
+  }
+
+  .secondary-text{
+    color: ${COLORS.secondary};
+  }
+
+  .success-text{
+    color: ${COLORS.success};
+  }
+
+  .danger-text{
+    color: ${COLORS.danger};
+  }
+
+  .main-text{
+    color: ${COLORS.gray0};
+    svg{
+      color: ${COLORS.gray0};
+    }
+  }
+
+  .nightMode{
+    .main-background{
+      background: ${COLORS.dark0};
+    }
+    .second-background{
+      background: ${COLORS.dark1};
+    }
+    .main-text{
+      color: ${COLORS.light0};
+      svg{
+        color: ${COLORS.light0};
+      }
+    }
+  }
+
+ 
 
 `;

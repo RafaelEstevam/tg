@@ -7,7 +7,7 @@ import { IconButton } from '@material-ui/core';
 const StyledAccessibilityBar = styled('div')`
     width: 100%;
     display: flex;
-    background-color: #fc0;
+    max-width: 250px;
     justify-content: space-around;
     // position: fixed;
     // top: 0;
@@ -63,7 +63,7 @@ export default function AccessibilityBar() {
 
 
     return (
-        <StyledAccessibilityBar>
+        <StyledAccessibilityBar className="main-text">
             <IconButton
                 onClick={() => resetAccessibility(setContrast, contrast) }
             >

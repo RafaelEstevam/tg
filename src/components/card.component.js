@@ -6,9 +6,9 @@ const StyledCard = styled(Card)`
     height: ${props => props.height};
 `;
 
-export default function CustomCard ({children, height}){
+export default function CustomCard ({children, height, className}){
     return(
-        <StyledCard height={height}>
+        <StyledCard height={height} className={className}>
             {children}
         </StyledCard>
     )

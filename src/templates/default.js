@@ -10,7 +10,7 @@ import AccessibilityBar from 'components/acessibilityBar.component';
 
 export default function PersistentDrawerLeft({ children }) {
   const classes = HeaderStyle();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const accessibility = useSelector(state => state.accessibility);
 
   const handleDrawerOpen = () => {
@@ -24,18 +24,19 @@ export default function PersistentDrawerLeft({ children }) {
   return (
     <>
       <div style={{minHeight: '100vh'}} className={accessibility.nightMode && 'nightMode'}>
-        <div className={classes.root}>
+        <div className={`${classes.root} main-background`}>
           <Header
             open={open}
             handleDrawerOpen={handleDrawerOpen}
             handleDrawerClose={handleDrawerClose}
+            
           />
           <main
             className={clsx(classes.content, {
               [classes.contentShift]: open,
             })}
           >
-            <div className="brightness">
+            <div>
               <div className={classes.drawerHeader} />
               {children}
             </div>

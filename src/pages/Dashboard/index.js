@@ -21,6 +21,8 @@ import CarrosselItemComponent from 'components/carrosselItem.component';
 
 import { AcUnitSharp } from '@material-ui/icons';
 
+import {COLORS} from '../../styles/colors';
+
 const CardWrapper = styled('div')`
   padding: 15px;
   display: flex;
@@ -97,7 +99,7 @@ function Home() {
         <Grid item lg={3} sm={4} xl={3} xs={12}>
           <Grid container spacing={3}>
             <Grid item lg={12} xs={12}>
-              <CustomCard>
+              <CustomCard className="second-background main-text">
                 <CardContent>
                   <CardContent>
                     <XpProgressComponent />
@@ -107,7 +109,7 @@ function Home() {
                 </CardContent>
               </CustomCard>
             </Grid>
-            <Grid item lg={12} xs={12}>
+            {/* <Grid item lg={12} xs={12}>
               <CustomCard>
                 <CardContent>
                   <ActivityComponent />
@@ -116,25 +118,25 @@ function Home() {
                   <ActivityComponent />
                 </CardContent>
               </CustomCard>
-            </Grid>
+            </Grid> */}
           </Grid>
         </Grid>
         <Grid item lg={9} sm={8} xl={9} xs={12}>
           <Grid container spacing={3}>
             <Grid item lg={3} xs={6}>
-              <MetricCardComponent title={'Nota'} subtitle={'parcial'} value={7.5} icon={<AcUnitSharp />} background={"#6b71b3"} />
+              <MetricCardComponent title={'Nota'} subtitle={'parcial'} value={7.5} icon={<AcUnitSharp />} background={COLORS.primary} />
             </Grid>
             <Grid item lg={3} xs={6}>
-              <MetricCardComponent title={'Aulas'} subtitle={'assistidas'} value={1} background={"#54c662"} />
+              <MetricCardComponent title={'Aulas'} subtitle={'assistidas'} value={1} background={COLORS.secondary} />
             </Grid>
             <Grid item lg={3} xs={6}>
-              <MetricCardComponent title={'Nº tarefas'} subtitle={'entregues'} value={3} background={"#c65954"} />
+              <MetricCardComponent title={'Nº tarefas'} subtitle={'entregues'} value={3} background={COLORS.success} />
             </Grid>
             <Grid item lg={3} xs={6}>
-              <MetricCardComponent title={'Nº trabalhos'} subtitle={'entregues'} value={2} background={"#c65493"} />
+              <MetricCardComponent title={'Nº trabalhos'} subtitle={'entregues'} value={2} background={COLORS.danger} />
             </Grid>
             <Grid item lg={6} xs={12}>
-              <CustomCard height={'360px'}>
+              <CustomCard height={'360px'} className="second-background main-text">
                 {
                   carrosselList.map((item, index) => (
                     <CarrosselItemComponent key={index} title={item.title} subtitle={item.subtitle}
@@ -148,12 +150,11 @@ function Home() {
               </CustomCard>
             </Grid>
             <Grid item lg={6} xs={12}>
-              <CustomCard height={'360px'}>
+              <CustomCard height={'360px'} className="primary-background">
                 <ChartWrapper>
-                  <Typography>Minutos estudados</Typography>
+                  <Typography style={{color: COLORS.light0}}>Minutos estudados</Typography>
                   <BarChartComponent />
                 </ChartWrapper>
-
               </CustomCard>
             </Grid>
             <Grid item lg={4} xs={12}>
@@ -163,11 +164,11 @@ function Home() {
                 subtitle={'Aluno participativo'}
                 value={7.5}
                 icon={<AcUnitSharp />}
-                background={"#6b71b3"}
+                background={COLORS.primary}
               />
             </Grid>
             <Grid item lg={8} xs={12}>
-              <CustomCard height={'250px'}>
+              <CustomCard height={'250px'} className="second-background main-text">
                 <CardWrapper>
                   <Typography>Dados de conversa</Typography>
                   <div style={{ width: '100%' }}>

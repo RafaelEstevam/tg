@@ -1,5 +1,5 @@
 import react from 'react';
-import {useHistory, Link, Redirect} from 'react-router-dom';
+import { useHistory, Link, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import clsx from 'clsx';
 import { useTheme } from '@material-ui/core/styles';
@@ -24,11 +24,36 @@ import ListAltIcon from '@material-ui/icons/ListAlt';
 import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import GroupIcon from '@material-ui/icons/Group';
 
-import {resetStorage} from 'services/api';
+import { resetStorage } from 'services/api';
 
-import {HeaderStyle} from '../styles/header';
+import { HeaderStyle } from '../styles/header';
+import AccessibilityBar from './acessibilityBar.component';
+import { PowerSettingsNew } from '@material-ui/icons';
 
-const Header = ({open, handleDrawerOpen, handleDrawerClose}) => {
+import styled from 'styled-components';
+
+const StudentComponent = styled('div')`
+  display: flex;
+  align-items: center;
+`;
+
+const StudentWrapper = styled('div')`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 10px;
+`;
+
+const CustonTitle = styled(Typography)`
+  font-weight: bold;
+  line-height: inherit;
+  padding-left: 40px;
+  span{
+    font-size: 20px;
+  }
+`
+
+const Header = ({ open, handleDrawerOpen, handleDrawerClose }) => {
 
   const history = useHistory();
   const classes = HeaderStyle();
@@ -50,48 +75,63 @@ const Header = ({open, handleDrawerOpen, handleDrawerClose}) => {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar  style={{display: 'flex', justifyContent: 'space-between'}}>
-          <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+        <Toolbar style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <IconButton
               color="inherit"
               aria-label="open drawer"
               onClick={handleDrawerOpen}
               edge="start"
-              className={clsx(classes.menuButton, open && classes.hide)}
+              className={`${clsx(classes.menuButton, open && classes.hide)} main-text`}
             >
               <MenuIcon />
             </IconButton>
           </div>
-          <Typography variant="h6" noWrap>
-            Português
-          </Typography>
-          <Button color="secondary" size="small" variant="contained" onClick={() => {handleLogout()}}>
-          </Button>
+          <AccessibilityBar />
+          <StudentComponent>
+            <StudentWrapper>
+              <Typography className="primary-text">
+                <b>
+                  Aluno X
+                </b>
+              </Typography>
+              <Typography variant="subtitle2" className="main-text">
+                alunox@alunox.com
+              </Typography>
+            </StudentWrapper>
+            <IconButton color="primary">
+              <PowerSettingsNew />
+            </IconButton>
+          </StudentComponent>
         </Toolbar>
       </AppBar>
       <Drawer
-      className={classes.drawer}
-      variant="persistent"
-      anchor="left"
-      open={open}
-      classes={{
-        paper: classes.drawerPaper,
-      }}
-    >
-      <div className={classes.drawerHeader}>
-        <IconButton onClick={handleDrawerClose}>
-          {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-        </IconButton>
-      </div>
-      <Divider />
-      <List>
-        {/* <ListItem button onClick={() => {history.push("/dashboard")}}>
+        className={`${classes.drawer} main-background`}
+        variant="persistent"
+        anchor="left"
+        open={open}
+        classes={{
+          paper: `${classes.drawerPaper} second-background`,
+        }}
+      >
+        <div className={classes.drawerHeader}>
+          <CustonTitle>
+            <span className="main-text">EDUCA</span>
+            <span className="primary-text">LYTICS</span>
+          </CustonTitle>
+          <IconButton onClick={handleDrawerClose} className="main-text">
+            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+          </IconButton>
+        </div>
+        {/* <Divider /> */}
+        <List>
+          {/* <ListItem button onClick={() => {history.push("/dashboard")}}>
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
           <ListItemText primary={"Dashboard"} />
         </ListItem> */}
-        {/* <ListItem button onClick={() => {history.push("/kanban")}}>
+          {/* <ListItem button onClick={() => {history.push("/kanban")}}>
           <ListItemIcon>
             <DashboardIcon />
           </ListItemIcon>
@@ -123,10 +163,10 @@ const Header = ({open, handleDrawerOpen, handleDrawerClose}) => {
           </ListItemIcon>
           <ListItemText primary={"Perfil de usuário"} />
         </ListItem> */}
-      </List>
-      <Divider />
-    </Drawer>
-  </>
+        </List>
+        {/* <Divider /> */}
+      </Drawer>
+    </>
   )
 }
 
