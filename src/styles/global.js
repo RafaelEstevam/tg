@@ -9,14 +9,26 @@ export default createGlobalStyle`
     box-sizing: border-box;
     font-size: 16px;
     // opacity: ${(props) => 1 - ((props.theme.brightness / 100) * 2)}; /*brilho*/
-    filter: brightness(${(props) => 1 + ((props.theme.brightness / 100))}) contrast(${(props) => 1 + ((props.theme.contrast / 100))});
+    // filter: brightness(${(props) => 1 + ((props.theme.brightness / 100))}) contrast(${(props) => 1 + ((props.theme.contrast / 100))});
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: #666;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    background-color: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+    border: 2px solid transparent;
   }
 
   html{
     font-size: ${(props) => 1 + ((props.theme.fontSize / 10) * 2)}rem;
     height: 100vh;
     body, #root{
-      height: 100vh;
+      min-height: 100vh;
     }
   }
 

@@ -1,8 +1,10 @@
 import { Paper, Typography } from '@material-ui/core';
 import styled from 'styled-components';
 
+import {COLORS} from '../styles/colors';
+
 const MetricTitle = styled(Typography)`
-    color: #fff;
+    color: ${COLORS.light0};
     font-weight: bold;
 `;
 
@@ -13,9 +15,9 @@ const MetricContent = styled(Typography)`
         font-size: 80px;
         line-height: 50px;
         font-weight: bold;
-        color: #ffffff60;
-        font-family: 'Impact';
-        transform: skew(-20deg);
+        color: ${COLORS.light0}60;
+        // font-family: 'Impact';
+        // transform: skew(-20deg);
     }
 `;
 

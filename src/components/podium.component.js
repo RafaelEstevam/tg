@@ -1,6 +1,25 @@
 import react from 'react';
 import styled from 'styled-components';
-import {Typography} from '@material-ui/core';
+import { Typography, Tooltip } from '@material-ui/core';
+import { COLORS } from '../styles/colors';
+
+import avatar from '../assets/avatar.jpg';
+
+import { Star } from '@material-ui/icons'
+
+import { GamingTitle } from './styles.component';
+
+const Position = styled('div')`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border-radius: 5px;
+    padding: 5px;
+    color: ${COLORS.light0};
+    
+`
 
 const PodiumComponetn = styled('div')`
     display: flex;
@@ -17,38 +36,67 @@ const StyledPodium = styled('div')`
     max-width: 280px;
     margin-top: 10px;
 `
-const StyledFirstPosition = styled('div')`
-    display: block;
+const StyledFirstPosition = styled(Position)`
     width: 35%;
-    height: 80px;
-    background: #fc0;
-    border-radius: 5px;
+    min-height: 80px;
+    background: ${COLORS.primary};
+    svg:{
+        color: ${COLORS.light0} !important;
+    }
 `
-const StyledSecondPosition = styled('div')`
-    display: block;
+const StyledSecondPosition = styled(Position)`
     width: 28%;
-    height:60px;
-    background: #ccc;
-    border-radius: 5px;
+    min-height:60px;
+    background: ${COLORS.secondary};
 `
-const StyledThirdPosition = styled('div')`
-    display: block;
+const StyledThirdPosition = styled(Position)`
     width: 28%;
-    height: 50px;
-    background: #ff5423;
-    border-radius: 5px;
+    min-height: 50px;
+    background: ${COLORS.dark0};
+`;
+
+const AchievmentsItem = styled('div')`
+    display: block;
+    border-radius: 100%;
+    width: 80%;
+    overflow: hidden;
+    img{
+        width: 100%;
+        height: auto;
+        display: block
+    }
 `
 
-export default function Podium(){
+export default function Podium({ podium }) {
     return (
         <PodiumComponetn>
-            <Typography>Pódio</Typography>
+            <GamingTitle>Pódio</GamingTitle>
             <StyledPodium>
-                <StyledSecondPosition></StyledSecondPosition>
-                <StyledFirstPosition></StyledFirstPosition>
-                <StyledThirdPosition></StyledThirdPosition>
+                <Tooltip title={podium?.second?.student}>
+                    <StyledSecondPosition>
+                        <AchievmentsItem><img src={podium?.second?.avatar} /></AchievmentsItem>
+                        <Typography>2º</Typography>
+                    </StyledSecondPosition>
+                </Tooltip>
+
+                <Tooltip title={podium?.first?.student}>
+                    <StyledFirstPosition>
+                        <Star style={{color: COLORS.light0}} />
+                        <AchievmentsItem><img src={podium?.first?.avatar} /></AchievmentsItem>
+                        <Typography>1º</Typography>
+                    </StyledFirstPosition>
+                </Tooltip>
+
+                <Tooltip title={podium?.third?.student}>
+
+                    <StyledThirdPosition>
+                        <AchievmentsItem><img src={podium?.third?.avatar} /></AchievmentsItem>
+                        <Typography>3º</Typography>
+                    </StyledThirdPosition>
+                </Tooltip>
+
             </StyledPodium>
         </PodiumComponetn>
-        
+
     )
 }

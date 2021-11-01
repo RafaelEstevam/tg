@@ -7,7 +7,7 @@ import { IconButton, Tooltip } from '@material-ui/core';
 const StyledAccessibilityBar = styled('div')`
     width: 100%;
     display: flex;
-    max-width: 200px;
+    max-width: max-content;
     justify-content: space-around;
     // position: fixed;
     // top: 0;
@@ -64,7 +64,7 @@ export default function AccessibilityBar() {
 
     return (
         <StyledAccessibilityBar className="main-text">
-            <Tooltip title="Contraste">
+            {/* <Tooltip title="Contraste">
                 <IconButton
                     onClick={() => resetAccessibility(setContrast, contrast)}
                 >
@@ -78,7 +78,7 @@ export default function AccessibilityBar() {
                 >
                     <Brightness6 />
                 </IconButton>
-            </Tooltip>
+            </Tooltip> */}
 
             <Tooltip title="Fonte">
                 <IconButton

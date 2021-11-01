@@ -11,6 +11,11 @@ const accessibilityContext = {
     nightMode: true
 }
 
+const chatContext = {
+    showChat: false,
+    dataChat: {}
+}
+
 const decode = {
     email: localStorage.getItem("username"),
     permission: localStorage.getItem("permission")
@@ -24,6 +29,16 @@ const tasks = {
 };
 
 const taskList = [];
+
+function chatReducer(state = chatContext, action){
+    switch (action.type){
+        case 'SET_CHAT':
+            state = action.chat;
+            return state;
+        default:
+            return state;
+    }
+}
 
 function decodeReducer(state = decode, action) {
     const data = action.decode;
@@ -119,5 +134,6 @@ export default createStore(combineReducers({
     token: setTokenReducer,
     task: taskReducer,
     taskList: taskListReducer,
-    accessibility: setAccessibilityReducer
+    accessibility: setAccessibilityReducer,
+    chat: chatReducer,
 }));

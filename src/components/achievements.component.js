@@ -1,7 +1,8 @@
 import react from 'react';
 import styled from 'styled-components';
 import avatar from '../assets/avatar.jpg';
-import {Typography} from '@material-ui/core';
+import {GamingTitle} from './styles.component';
+import {Tooltip, IconButton} from '@material-ui/core';
 
 const AchievmentComponent = styled('div')`
     display: flex;
@@ -12,33 +13,37 @@ const AchievmentComponent = styled('div')`
 
 const AchievmentsList = styled('div')`
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 10px;
     align-items: center;
     width: 100%;
     max-width: 250px;
     margin-top: 10px;
 `
-const AchievmentsItem = styled('div')`
+const AchievmentsItem = styled(IconButton)`
     display: block;
     border-radius: 100%;
-    width: 20%;
+    width: 40px;
     overflow: hidden;
+    padding: 0px;
     img{
         width: 100%;
         height: auto;
-        display: block
+        display: block;
+        border-radius: 100%;
     }
 `
 
-export default function Achievements() {
+export default function Achievements({achievements}) {
     return (
         <AchievmentComponent>
-            <Typography>Conquistas</Typography>
+            <GamingTitle>Conquistas</GamingTitle>
             <AchievmentsList>
-                <AchievmentsItem><img src={avatar} /></AchievmentsItem>
-                <AchievmentsItem><img src={avatar} /></AchievmentsItem>
-                <AchievmentsItem><img src={avatar} /></AchievmentsItem>
-                <AchievmentsItem><img src={avatar} /></AchievmentsItem>
+                {achievements?.map((item) => (
+                    <Tooltip title={item.title}>
+                        <AchievmentsItem><img src={avatar} /></AchievmentsItem>
+                    </Tooltip>
+                ))}
             </AchievmentsList>
         </AchievmentComponent>
     )

@@ -5,6 +5,8 @@ import {useSelector} from 'react-redux'
 
 import { HeaderStyle } from 'styles/header';
 
+import {ChatWrapper} from '../components/chatBar.component';
+
 import Header from 'components/header.component';
 import AccessibilityBar from 'components/acessibilityBar.component';
 
@@ -45,6 +47,7 @@ export default function PersistentDrawerLeft({ children }) {
           </main>
         </div>
       </div>
+      <ChatWrapper />
     </>
   );
 }

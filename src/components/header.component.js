@@ -88,9 +88,9 @@ const Header = ({ open, handleDrawerOpen, handleDrawerClose }) => {
       <AppBar
         color="transparent"
         position="fixed"
-        className={clsx(classes.appBar, {
+        className={`${clsx(classes.appBar, {
           [classes.appBarShift]: open,
-        })}
+        })} main-background`}
       >
         <Toolbar style={{ display: 'flex', justifyContent: 'space-between' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

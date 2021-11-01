@@ -19,34 +19,13 @@ import MetricCardComponent from 'components/metricCard.component';
 import BarChartComponent from 'components/barChart.component';
 import CarrosselItemComponent from 'components/carrosselItem.component';
 
+import {ChatBar} from 'components/chatBar.component';
+
 import { AcUnitSharp } from '@material-ui/icons';
 
 import { COLORS } from '../../styles/colors';
 
 import mock from '../../services/mock';
-
-const CardWrapper = styled('div')`
-  padding: 15px;
-  display: flex;
-  width: 100%;
-  height: 100%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-
-`
-
-const CarrosselItem = styled('div')`
-  height: 80%;
-  display: ${props => props.currentIndex === props.index ? 'block' : 'none'};
-`
-
-const CarrosselButtons = styled('div')`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  height: 20%;
-`;
 
 const ChartWrapper = styled('div')`
   width: 100%;
@@ -55,6 +34,7 @@ const ChartWrapper = styled('div')`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
 `;
 
 const PageTitle = styled('div')`
@@ -87,14 +67,6 @@ const DashboardMenuItem = styled(Button)`
   }
 `
 
-const ChatItem = styled('div')`
-  height: 40px;
-  width: 40px;
-  background: #333;
-  border-radius: 100%;
-  margin: 10px;
-`
-
 const carrosselList = [
   { title: 'Teste', subtitle: '234', value: '435' },
   { title: '234', subtitle: 'Teste', value: '435' }
@@ -109,25 +81,13 @@ const dashItems = [
 
 function Home() {
 
-  const [carrosselItems] = useState(carrosselList.length);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentLinkIndex, setCurrentLinkIndex] = useState(0);
   const [currentDash, setCurrentDash] = useState({});
-
-  const handleNext = () => {
-    if (currentIndex + 1 < carrosselItems) {
-      setCurrentIndex(currentIndex + 1)
-    }
-  }
-
-  const handlePrev = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1)
-    }
-  }
+  const [data, setData] = useState(mock());
 
   const handleSetDash = (item) => {
-    const current = mock.filter((dash) => {
+    const current = data.filter((dash) => {
       return item.subject === dash.subject
     });
     setCurrentDash(current[0]);
@@ -138,8 +98,10 @@ function Home() {
     handleSetDash(item);
   }
 
+  
+
   useEffect(() => {
-    handleSetDash(mock[0]);
+    handleSetDash(data[0]);
   }, []);
 
   return (
@@ -155,7 +117,7 @@ function Home() {
 
       <DashboardMenu>
         <DashboardMenuWrapper>
-          {mock.map((item, index) => (
+          {data.map((item, index) => (
             <DashboardMenuItem
               size="small"
               className={index !== currentLinkIndex && 'main-text'}
@@ -178,7 +140,7 @@ function Home() {
                 <CardContent>
                   <CardContent>
                     <XpProgressComponent experience={currentDash?.experience} />
-                    <AchievementsComponent achivements={currentDash?.achivements}/>
+                    <AchievementsComponent achievements={currentDash?.achievements}/>
                     <PodiumComponent podium={currentDash?.podium} />
                   </CardContent>
                 </CardContent>
@@ -211,24 +173,14 @@ function Home() {
               <MetricCardComponent title={'Nº trabalhos'} subtitle={'entregues'} value={currentDash?.jobs} background={COLORS.danger} />
             </Grid>
             <Grid item lg={6} xs={12}>
-              <CustomCard height={'360px'} className="second-background main-text">
-                {
-                  currentDash?.carrossel?.map((item, index) => (
-                    <CarrosselItemComponent key={index} title={item.title} subtitle={item.subtitle} label={item.label}
-                      value={item.value} index={index} currentIndex={currentIndex} />
-                  ))
-                }
-                <CarrosselButtons>
-                  <Button onClick={() => handlePrev()}>Prev</Button>
-                  <Button onClick={() => handleNext()}>Next</Button>
-                </CarrosselButtons>
-              </CustomCard>
+              <CarrosselItemComponent carrossel={currentDash?.carrossel} setCurrentIndex={setCurrentIndex} currentIndex={currentIndex}/>
             </Grid>
             <Grid item lg={6} xs={12}>
               <CustomCard height={'360px'} className="primary-background">
                 <ChartWrapper>
-                  <Typography style={{ color: COLORS.light0 }}>Minutos estudados</Typography>
+                  <Typography style={{ color: COLORS.light0 }}><b>Minutos estudados</b></Typography>
                   <BarChartComponent data={currentDash?.chart} />
+                  <Typography style={{ color: COLORS.light0 }}><b>Por semana</b></Typography>
                 </ChartWrapper>
               </CustomCard>
             </Grid>
@@ -244,35 +196,18 @@ function Home() {
             </Grid>
             <Grid item lg={8} xs={12}>
               <CustomCard height={'250px'} className="second-background main-text">
-                <CardWrapper>
+                {/* <CardWrapper>
                   <Typography>Dados de conversa</Typography>
                   <div style={{ width: '100%' }}>
 
                   </div>
-                </CardWrapper>
+                </CardWrapper> */}
               </CustomCard>
             </Grid>
           </Grid>
         </Grid>
         <Grid item lg={1} sm={8} xl={9} xs={12}>
-          <CustomCard className="second-background main-text">
-            <CardWrapper>
-              <Typography>Chat</Typography>
-              <ChatItem />
-              <ChatItem />
-              <ChatItem />
-              <ChatItem />
-              <ChatItem />
-              <ChatItem />
-              <ChatItem />
-              <ChatItem />
-              <ChatItem />
-              <ChatItem />
-              <ChatItem />
-              <ChatItem />
-              <ChatItem />
-            </CardWrapper>
-          </CustomCard>
+          <ChatBar />
         </Grid>
       </Grid>
     </>
