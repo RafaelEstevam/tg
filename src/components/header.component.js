@@ -32,6 +32,8 @@ import { PowerSettingsNew } from '@material-ui/icons';
 
 import styled from 'styled-components';
 
+import {COLORS} from '../styles/colors';
+
 const StudentComponent = styled('div')`
   display: flex;
   align-items: center;
@@ -50,6 +52,20 @@ const CustonTitle = styled(Typography)`
   padding-left: 40px;
   span{
     font-size: 20px;
+  }
+`;
+
+const CustomList = styled(List)`
+  padding-right: 20px;
+`
+
+const CustomListItem = styled(ListItem)`
+  border-radius: 0px 10px 10px 0px;
+  :hover{
+    background: ${COLORS.primary};
+    svg, span{
+      color: ${COLORS.light0};
+    }
   }
 `
 
@@ -106,7 +122,7 @@ const Header = ({ open, handleDrawerOpen, handleDrawerClose }) => {
         </Toolbar>
       </AppBar>
       <Drawer
-        className={`${classes.drawer} main-background`}
+        className={`${classes.drawer}`}
         variant="persistent"
         anchor="left"
         open={open}
@@ -124,46 +140,46 @@ const Header = ({ open, handleDrawerOpen, handleDrawerClose }) => {
           </IconButton>
         </div>
         {/* <Divider /> */}
-        <List>
-          {/* <ListItem button onClick={() => {history.push("/dashboard")}}>
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary={"Dashboard"} />
-        </ListItem> */}
-          {/* <ListItem button onClick={() => {history.push("/kanban")}}>
-          <ListItemIcon>
-            <DashboardIcon />
-          </ListItemIcon>
-          <ListItemText primary={"Kanban"} />
-        </ListItem>
-        <ListItem button onClick={() => {history.push("/tasks")}}>
-          <ListItemIcon>
-            <ListAltIcon />
-          </ListItemIcon>
-          <ListItemText primary={"Tarefas"} />
-        </ListItem>
-        <ListItem button onClick={() => {history.push("/categories")}}>
-          <ListItemIcon>
-            <LocalOfferIcon />
-          </ListItemIcon>
-          <ListItemText primary={"Categorias"} />
-        </ListItem>
-        {decode.permission === "ROLE_ADMIN" && (
-          <ListItem button onClick={() => {history.push("/users")}}>
+        <CustomList>
+          {/* <CustomListItem className="main-text" button onClick={() => { history.push("/dashboard") }}>
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Dashboard"} />
+          </CustomListItem> */}
+          <CustomListItem className="main-text" button onClick={() => { history.push("/kanban") }}>
+            <ListItemIcon>
+              <DashboardIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Kanban"} />
+          </CustomListItem>
+          <CustomListItem className="main-text" button onClick={() => { history.push("/tasks") }}>
+            <ListItemIcon>
+              <ListAltIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Tarefas"} />
+          </CustomListItem>
+          <CustomListItem className="main-text" button onClick={() => { history.push("/categories") }}>
+            <ListItemIcon>
+              <LocalOfferIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Categorias"} />
+          </CustomListItem>
+          {decode.permission === "ROLE_ADMIN" && (
+            <CustomListItem className="main-text" button onClick={() => { history.push("/users") }}>
+              <ListItemIcon>
+                <GroupIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Usuários"} />
+            </CustomListItem>
+          )}
+          <CustomListItem className="main-text" button onClick={() => { history.push(`/profile/edit`) }}>
             <ListItemIcon>
               <GroupIcon />
             </ListItemIcon>
-            <ListItemText primary={"Usuários"} />
-          </ListItem>
-        )}
-        <ListItem button onClick={() => {history.push(`/profile/edit`)}}>
-          <ListItemIcon>
-            <GroupIcon />
-          </ListItemIcon>
-          <ListItemText primary={"Perfil de usuário"} />
-        </ListItem> */}
-        </List>
+            <ListItemText primary={"Perfil de usuário"} />
+          </CustomListItem>
+        </CustomList>
         {/* <Divider /> */}
       </Drawer>
     </>

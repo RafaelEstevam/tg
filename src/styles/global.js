@@ -50,7 +50,7 @@ export default createGlobalStyle`
 
   .main-text{
     color: ${COLORS.gray0};
-    svg{
+    svg, span{
       color: ${COLORS.gray0};
     }
   }
@@ -64,7 +64,7 @@ export default createGlobalStyle`
     }
     .main-text{
       color: ${COLORS.light0};
-      svg{
+      svg, span{
         color: ${COLORS.light0};
       }
     }

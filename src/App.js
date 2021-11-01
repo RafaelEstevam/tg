@@ -20,6 +20,9 @@ const theme = createTheme({
     },
     secondary: {
       main: COLORS.secondary,
+    },
+    default:{
+      main: COLORS.gray0
     }
   },
   typography: {

@@ -21,7 +21,7 @@ import CarrosselItemComponent from 'components/carrosselItem.component';
 
 import { AcUnitSharp } from '@material-ui/icons';
 
-import {COLORS} from '../../styles/colors';
+import { COLORS } from '../../styles/colors';
 
 const CardWrapper = styled('div')`
   padding: 15px;
@@ -53,12 +53,57 @@ const ChartWrapper = styled('div')`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const PageTitle = styled('div')`
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 15px;
+`
+
+const DashboardMenu = styled('div')`
+  margin-bottom: 20px;
+  overflow: hidden;
+  overflow-x: auto;
+  max-width: 87vw;
+  //   overflow: hidden;
+  //   overflow-x: auto;
+`;
+
+const DashboardMenuWrapper = styled('div')`
+  display: flex;
+  gap: 20px;
+  width: max-content;
+`
+
+const DashboardMenuItem = styled(Button)`
+  padding: 4px 10px;
+  span{
+    text-transform: capitalize;
+  }
+`
+
+const ChatItem = styled('div')`
+  height: 40px;
+  width: 40px;
+  background: #333;
+  border-radius: 100%;
+  margin: 10px;
 `
 
 const carrosselList = [
-  {title: 'Teste', subtitle: '234', value: '435'},
-  {title: '234', subtitle: 'Teste', value: '435'}
+  { title: 'Teste', subtitle: '234', value: '435' },
+  { title: '234', subtitle: 'Teste', value: '435' }
 ];
+
+const dashItems = [
+  { title: 'Português' },
+  { title: 'Matemática' },
+  { title: 'História' },
+  { title: 'Geografia' }
+]
 
 function Home() {
 
@@ -68,6 +113,7 @@ function Home() {
   const [open, setOpen] = React.useState(false);
   const [carrosselItems] = useState(carrosselList.length);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentLinkIndex, setCurrentLinkIndex] = useState(0);
 
   const handleNext = () => {
     if (currentIndex + 1 < carrosselItems) {
@@ -79,6 +125,10 @@ function Home() {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1)
     }
+  }
+
+  const handleGetDash = (item, index) => {
+    setCurrentLinkIndex(index);
   }
 
   useEffect(() => {
@@ -95,6 +145,32 @@ function Home() {
 
   return (
     <>
+      <PageTitle>
+        <Typography variant="h5" className="primary-text">
+          Dashboard
+        </Typography>
+        <Typography variant="subtitle2" className="main-text">
+          Último acesso: 20 de junho de 2021
+        </Typography>
+      </PageTitle>
+
+      <DashboardMenu>
+        <DashboardMenuWrapper>
+          {dashItems.map((item, index) => (
+            <DashboardMenuItem
+              size="small"
+              className={index !== currentLinkIndex && 'main-text'}
+              color={index === currentLinkIndex ? 'primary' : 'default'}
+              variant={index === currentLinkIndex ? 'contained' : 'text'}
+              currentLinkIndex={currentLinkIndex}
+              onClick={() => handleGetDash(item, index)}
+            >
+              {item.title}
+            </DashboardMenuItem>
+          ))}
+        </DashboardMenuWrapper>
+      </DashboardMenu>
+
       <Grid container spacing={3}>
         <Grid item lg={3} sm={4} xl={3} xs={12}>
           <Grid container spacing={3}>
@@ -110,7 +186,7 @@ function Home() {
               </CustomCard>
             </Grid>
             {/* <Grid item lg={12} xs={12}>
-              <CustomCard>
+              <CustomCard className="main-background main-text">
                 <CardContent>
                   <ActivityComponent />
                   <ActivityComponent />
@@ -121,7 +197,7 @@ function Home() {
             </Grid> */}
           </Grid>
         </Grid>
-        <Grid item lg={9} sm={8} xl={9} xs={12}>
+        <Grid item lg={8} sm={8} xl={9} xs={12}>
           <Grid container spacing={3}>
             <Grid item lg={3} xs={6}>
               <MetricCardComponent title={'Nota'} subtitle={'parcial'} value={7.5} icon={<AcUnitSharp />} background={COLORS.primary} />
@@ -152,7 +228,7 @@ function Home() {
             <Grid item lg={6} xs={12}>
               <CustomCard height={'360px'} className="primary-background">
                 <ChartWrapper>
-                  <Typography style={{color: COLORS.light0}}>Minutos estudados</Typography>
+                  <Typography style={{ color: COLORS.light0 }}>Minutos estudados</Typography>
                   <BarChartComponent />
                 </ChartWrapper>
               </CustomCard>
@@ -178,6 +254,26 @@ function Home() {
               </CustomCard>
             </Grid>
           </Grid>
+        </Grid>
+        <Grid item lg={1} sm={8} xl={9} xs={12}>
+          <CustomCard className="second-background main-text">
+            <CardWrapper>
+              <Typography>Chat</Typography>
+              <ChatItem />
+              <ChatItem />
+              <ChatItem />
+              <ChatItem />
+              <ChatItem />
+              <ChatItem />
+              <ChatItem />
+              <ChatItem />
+              <ChatItem />
+              <ChatItem />
+              <ChatItem />
+              <ChatItem />
+              <ChatItem />
+            </CardWrapper>
+          </CustomCard>
         </Grid>
       </Grid>
     </>

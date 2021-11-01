@@ -1,13 +1,13 @@
 import react, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
-import { Brightness3, TextFormat, Brightness6 } from '@material-ui/icons';
-import { IconButton } from '@material-ui/core';
+import { Brush, TextFormat, Brightness6, Brightness1 } from '@material-ui/icons';
+import { IconButton, Tooltip } from '@material-ui/core';
 
 const StyledAccessibilityBar = styled('div')`
     width: 100%;
     display: flex;
-    max-width: 250px;
+    max-width: 200px;
     justify-content: space-around;
     // position: fixed;
     // top: 0;
@@ -29,18 +29,18 @@ export default function AccessibilityBar() {
     const [fontSize, setFontSize] = useState(accessibility.fontSize);
     const [nightMode, setNightMode] = useState(accessibility.nightMode);
 
-    function resetAccessibility(action, state){
-        if(state < 3){
+    function resetAccessibility(action, state) {
+        if (state < 3) {
             action(state + 1);
-        }else{
+        } else {
             action(0);
         }
     }
 
     const handleNightMode = () => {
-        if(nightMode){
+        if (nightMode) {
             setNightMode(false);
-        }else{
+        } else {
             setNightMode(true);
         }
     }
@@ -64,26 +64,38 @@ export default function AccessibilityBar() {
 
     return (
         <StyledAccessibilityBar className="main-text">
-            <IconButton
-                onClick={() => resetAccessibility(setContrast, contrast) }
-            >
-                <Brightness3 />
-            </IconButton>
-            <IconButton
-                onClick={() => resetAccessibility(setBrightness, brightness) }
-            >
-                <Brightness6 />
-            </IconButton>
-            <IconButton
-                onClick={() => resetAccessibility(setFontSize, fontSize) }
-            >
-                <TextFormat />
-            </IconButton>
-            <IconButton
-                onClick={() => handleNightMode() }
-            >
-                <TextFormat />
-            </IconButton>
+            <Tooltip title="Contraste">
+                <IconButton
+                    onClick={() => resetAccessibility(setContrast, contrast)}
+                >
+                    <Brush />
+                </IconButton>
+            </Tooltip>
+            
+            <Tooltip title="Brilho">
+                <IconButton
+                    onClick={() => resetAccessibility(setBrightness, brightness)}
+                >
+                    <Brightness6 />
+                </IconButton>
+            </Tooltip>
+
+            <Tooltip title="Fonte">
+                <IconButton
+                    onClick={() => resetAccessibility(setFontSize, fontSize)}
+                >
+                    <TextFormat />
+                </IconButton>
+            </Tooltip>
+
+            <Tooltip title="Modo noturno">
+                <IconButton
+                    onClick={() => handleNightMode()}
+                >
+                    <Brightness1 />
+                </IconButton>
+            </Tooltip>
+
         </StyledAccessibilityBar>
     )
 }

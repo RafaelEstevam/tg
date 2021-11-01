@@ -10,7 +10,7 @@ import AccessibilityBar from 'components/acessibilityBar.component';
 
 export default function PersistentDrawerLeft({ children }) {
   const classes = HeaderStyle();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const accessibility = useSelector(state => state.accessibility);
 
   const handleDrawerOpen = () => {
@@ -38,7 +38,9 @@ export default function PersistentDrawerLeft({ children }) {
           >
             <div>
               <div className={classes.drawerHeader} />
-              {children}
+              <div className={classes.drawerWrapper}>
+                {children}
+              </div>
             </div>
           </main>
         </div>
