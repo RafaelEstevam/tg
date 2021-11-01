@@ -9,7 +9,6 @@ const MetricTitle = styled(Typography)`
 const MetricContent = styled(Typography)`
     padding: 20px;
     border-radius: 100%;
-    // border: 12px solid #00000020;
     p{
         font-size: 80px;
         line-height: 50px;
@@ -34,7 +33,7 @@ const MetricIcon = styled('div')`
 
 const MetricComponent = styled(Paper)`
     padding: 15px;
-    border-radius: 20px;
+    // border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;

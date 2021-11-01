@@ -16,14 +16,17 @@ const CardWrapper = styled('div')`
   justify-content: space-between;
 `
 
-export default function CustomCard({title, subtitle, value, index, currentIndex }) {
-    return (
-        <CarrosselItem index={index} currentIndex={currentIndex}>
-            <CardWrapper>
-                <Typography>{title}</Typography>
-                <Typography>{value}</Typography>
-                <Typography>{subtitle}</Typography>
-            </CardWrapper>
-        </CarrosselItem>
-    )
+export default function CustomCard({ title, subtitle, value, label, index, currentIndex }) {
+  return (
+    <CarrosselItem index={index} currentIndex={currentIndex}>
+      <CardWrapper>
+        <Typography>{title}</Typography>
+        <div>
+          <Typography>{value}</Typography>
+          <Typography>{label}</Typography>
+        </div>
+        <Typography>{subtitle}</Typography>
+      </CardWrapper>
+    </CarrosselItem>
+  )
 }

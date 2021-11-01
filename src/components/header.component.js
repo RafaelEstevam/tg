@@ -20,6 +20,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
 import DashboardIcon from '@material-ui/icons/Dashboard';
+import PieChart from '@material-ui/icons/PieChart';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import GroupIcon from '@material-ui/icons/Group';
@@ -60,7 +61,7 @@ const CustomList = styled(List)`
 `
 
 const CustomListItem = styled(ListItem)`
-  border-radius: 0px 10px 10px 0px;
+  border-radius: 0px 5px 5px 0px;
   :hover{
     background: ${COLORS.primary};
     svg, span{
@@ -141,13 +142,13 @@ const Header = ({ open, handleDrawerOpen, handleDrawerClose }) => {
         </div>
         {/* <Divider /> */}
         <CustomList>
-          {/* <CustomListItem className="main-text" button onClick={() => { history.push("/dashboard") }}>
+          <CustomListItem className="main-text" button onClick={() => { history.push("/dashboard") }}>
             <ListItemIcon>
-              <InboxIcon />
+              <PieChart />
             </ListItemIcon>
             <ListItemText primary={"Dashboard"} />
-          </CustomListItem> */}
-          <CustomListItem className="main-text" button onClick={() => { history.push("/kanban") }}>
+          </CustomListItem>
+          {/* <CustomListItem className="main-text" button onClick={() => { history.push("/kanban") }}>
             <ListItemIcon>
               <DashboardIcon />
             </ListItemIcon>
@@ -172,7 +173,7 @@ const Header = ({ open, handleDrawerOpen, handleDrawerClose }) => {
               </ListItemIcon>
               <ListItemText primary={"Usuários"} />
             </CustomListItem>
-          )}
+          )} */}
           <CustomListItem className="main-text" button onClick={() => { history.push(`/profile/edit`) }}>
             <ListItemIcon>
               <GroupIcon />

@@ -22,21 +22,21 @@ const StyledFirstPosition = styled('div')`
     width: 35%;
     height: 80px;
     background: #fc0;
-    border-radius: 10px;
+    border-radius: 5px;
 `
 const StyledSecondPosition = styled('div')`
     display: block;
     width: 28%;
     height:60px;
     background: #ccc;
-    border-radius: 10px;
+    border-radius: 5px;
 `
 const StyledThirdPosition = styled('div')`
     display: block;
     width: 28%;
     height: 50px;
     background: #ff5423;
-    border-radius: 10px;
+    border-radius: 5px;
 `
 
 export default function Podium(){

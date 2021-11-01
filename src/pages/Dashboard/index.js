@@ -23,6 +23,8 @@ import { AcUnitSharp } from '@material-ui/icons';
 
 import { COLORS } from '../../styles/colors';
 
+import mock from '../../services/mock';
+
 const CardWrapper = styled('div')`
   padding: 15px;
   display: flex;
@@ -107,13 +109,10 @@ const dashItems = [
 
 function Home() {
 
-  const dispatch = useDispatch();
-  const tasksData = useSelector(state => state.task);
-  const [taskList, setTaskList] = useState([]);
-  const [open, setOpen] = React.useState(false);
   const [carrosselItems] = useState(carrosselList.length);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentLinkIndex, setCurrentLinkIndex] = useState(0);
+  const [currentDash, setCurrentDash] = useState({});
 
   const handleNext = () => {
     if (currentIndex + 1 < carrosselItems) {
@@ -127,20 +126,20 @@ function Home() {
     }
   }
 
+  const handleSetDash = (item) => {
+    const current = mock.filter((dash) => {
+      return item.subject === dash.subject
+    });
+    setCurrentDash(current[0]);
+  }
+
   const handleGetDash = (item, index) => {
     setCurrentLinkIndex(index);
+    handleSetDash(item);
   }
 
   useEffect(() => {
-    try {
-      API.get("/task/all").then((response) => {
-        setTaskList(response.data);
-        dispatch({ type: 'ADD_TASK', count: response.data.length });
-      })
-    } catch (e) {
-      console.log(e);
-    }
-
+    handleSetDash(mock[0]);
   }, []);
 
   return (
@@ -156,7 +155,7 @@ function Home() {
 
       <DashboardMenu>
         <DashboardMenuWrapper>
-          {dashItems.map((item, index) => (
+          {mock.map((item, index) => (
             <DashboardMenuItem
               size="small"
               className={index !== currentLinkIndex && 'main-text'}
@@ -165,7 +164,7 @@ function Home() {
               currentLinkIndex={currentLinkIndex}
               onClick={() => handleGetDash(item, index)}
             >
-              {item.title}
+              {item.subject}
             </DashboardMenuItem>
           ))}
         </DashboardMenuWrapper>
@@ -178,9 +177,9 @@ function Home() {
               <CustomCard className="second-background main-text">
                 <CardContent>
                   <CardContent>
-                    <XpProgressComponent />
-                    <AchievementsComponent />
-                    <PodiumComponent />
+                    <XpProgressComponent experience={currentDash?.experience} />
+                    <AchievementsComponent achivements={currentDash?.achivements}/>
+                    <PodiumComponent podium={currentDash?.podium} />
                   </CardContent>
                 </CardContent>
               </CustomCard>
@@ -200,22 +199,22 @@ function Home() {
         <Grid item lg={8} sm={8} xl={9} xs={12}>
           <Grid container spacing={3}>
             <Grid item lg={3} xs={6}>
-              <MetricCardComponent title={'Nota'} subtitle={'parcial'} value={7.5} icon={<AcUnitSharp />} background={COLORS.primary} />
+              <MetricCardComponent title={'Nota'} subtitle={'parcial'} value={currentDash?.review} icon={<AcUnitSharp />} background={COLORS.primary} />
             </Grid>
             <Grid item lg={3} xs={6}>
-              <MetricCardComponent title={'Aulas'} subtitle={'assistidas'} value={1} background={COLORS.secondary} />
+              <MetricCardComponent title={'Aulas'} subtitle={'assistidas'} value={currentDash?.class} background={COLORS.secondary} />
             </Grid>
             <Grid item lg={3} xs={6}>
-              <MetricCardComponent title={'Nº tarefas'} subtitle={'entregues'} value={3} background={COLORS.success} />
+              <MetricCardComponent title={'Nº tarefas'} subtitle={'entregues'} value={currentDash?.tasks} background={COLORS.success} />
             </Grid>
             <Grid item lg={3} xs={6}>
-              <MetricCardComponent title={'Nº trabalhos'} subtitle={'entregues'} value={2} background={COLORS.danger} />
+              <MetricCardComponent title={'Nº trabalhos'} subtitle={'entregues'} value={currentDash?.jobs} background={COLORS.danger} />
             </Grid>
             <Grid item lg={6} xs={12}>
               <CustomCard height={'360px'} className="second-background main-text">
                 {
-                  carrosselList.map((item, index) => (
-                    <CarrosselItemComponent key={index} title={item.title} subtitle={item.subtitle}
+                  currentDash?.carrossel?.map((item, index) => (
+                    <CarrosselItemComponent key={index} title={item.title} subtitle={item.subtitle} label={item.label}
                       value={item.value} index={index} currentIndex={currentIndex} />
                   ))
                 }
@@ -229,15 +228,15 @@ function Home() {
               <CustomCard height={'360px'} className="primary-background">
                 <ChartWrapper>
                   <Typography style={{ color: COLORS.light0 }}>Minutos estudados</Typography>
-                  <BarChartComponent />
+                  <BarChartComponent data={currentDash?.chart} />
                 </ChartWrapper>
               </CustomCard>
             </Grid>
             <Grid item lg={4} xs={12}>
               <MetricCardComponent
                 height={'250px'}
-                title={'Destaque'}
-                subtitle={'Aluno participativo'}
+                title={currentDash?.emphasis?.title}
+                subtitle={currentDash?.emphasis?.subtitle}
                 value={7.5}
                 icon={<AcUnitSharp />}
                 background={COLORS.primary}
