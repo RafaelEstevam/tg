@@ -1,8 +1,9 @@
 import {Card} from '@material-ui/core';
 import styled from 'styled-components';
+import {COLORS} from '../styles/colors';
 
 const StyledCard = styled(Card)`
-    // border-radius: 20px;
+    border-radius: ${COLORS.borderRadius};
     height: ${props => props.height};
 `;
 

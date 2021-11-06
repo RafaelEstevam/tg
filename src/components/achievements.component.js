@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import avatar from '../assets/avatar.jpg';
 import {GamingTitle} from './styles.component';
 import {Tooltip, IconButton} from '@material-ui/core';
+import {EmojiEvents} from '@material-ui/icons';
+import {COLORS} from '../styles/colors';
 
 const AchievmentComponent = styled('div')`
     display: flex;
@@ -23,15 +25,20 @@ const AchievmentsList = styled('div')`
 const AchievmentsItem = styled(IconButton)`
     display: block;
     border-radius: 100%;
+    height: 40px;
     width: 40px;
-    overflow: hidden;
+    // overflow: hidden;
     padding: 0px;
-    img{
-        width: 100%;
-        height: auto;
-        display: block;
-        border-radius: 100%;
+    background: ${COLORS.primary};
+    svg{
+        color: ${COLORS.light0};
     }
+    // img{
+    //     width: 100%;
+    //     height: auto;
+    //     display: block;
+    //     border-radius: 100%;
+    // }
 `
 
 export default function Achievements({achievements}) {
@@ -41,7 +48,7 @@ export default function Achievements({achievements}) {
             <AchievmentsList>
                 {achievements?.map((item) => (
                     <Tooltip title={item.title}>
-                        <AchievmentsItem><img src={avatar} /></AchievmentsItem>
+                        <AchievmentsItem><EmojiEvents /></AchievmentsItem>
                     </Tooltip>
                 ))}
             </AchievmentsList>

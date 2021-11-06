@@ -33,11 +33,13 @@ const Xp = styled(Typography)`
     font-size: 0.75rem;
     color: ${COLORS.light0};
     background: ${COLORS.secondary};
-    position: absolute;
+    // position: absolute;
     font-weight: bold;
     z-index: 2;
-    bottom: 0px;
-    right: 0px;
+    margin-top: -30px;
+    margin-right: -80%;
+    // bottom: 0px;
+    // right: 0px;
 `
 
 export default function XpProgress({experience}) {
@@ -62,9 +64,9 @@ export default function XpProgress({experience}) {
             <CircularDiv>
                 <img src={avatar} />
             </CircularDiv>
-            {/* <Tooltip title="Pontos por cada interação">
+            <Tooltip title="Pontos por cada interação">
                 <Xp>{experience?.xp} XP</Xp>
-            </Tooltip> */}
+            </Tooltip>
         </XpComponent>
     );
 }

@@ -4,6 +4,8 @@ import { Typography, Tooltip } from '@material-ui/core';
 import { COLORS } from '../styles/colors';
 
 import avatar from '../assets/avatar.jpg';
+import avatar2 from '../assets/avatar-2.jpg';
+import avatar3 from '../assets/avatar-3.jpg';
 
 import { Star } from '@material-ui/icons'
 
@@ -15,7 +17,7 @@ const Position = styled('div')`
     align-items: center;
     justify-content: center;
     gap: 5px;
-    border-radius: 5px;
+    border-radius: ${COLORS.borderRadius};
     padding: 5px;
     color: ${COLORS.light0};
     
@@ -74,7 +76,7 @@ export default function Podium({ podium }) {
             <StyledPodium>
                 <Tooltip title={podium?.second?.student}>
                     <StyledSecondPosition>
-                        <AchievmentsItem><img src={podium?.second?.avatar} /></AchievmentsItem>
+                        <AchievmentsItem><img src={avatar2} /></AchievmentsItem>
                         <Typography>2º</Typography>
                     </StyledSecondPosition>
                 </Tooltip>
@@ -82,7 +84,7 @@ export default function Podium({ podium }) {
                 <Tooltip title={podium?.first?.student}>
                     <StyledFirstPosition>
                         <Star style={{color: COLORS.light0}} />
-                        <AchievmentsItem><img src={podium?.first?.avatar} /></AchievmentsItem>
+                        <AchievmentsItem><img src={avatar} /></AchievmentsItem>
                         <Typography>1º</Typography>
                     </StyledFirstPosition>
                 </Tooltip>
@@ -90,7 +92,7 @@ export default function Podium({ podium }) {
                 <Tooltip title={podium?.third?.student}>
 
                     <StyledThirdPosition>
-                        <AchievmentsItem><img src={podium?.third?.avatar} /></AchievmentsItem>
+                        <AchievmentsItem><img src={avatar3} /></AchievmentsItem>
                         <Typography>3º</Typography>
                     </StyledThirdPosition>
                 </Tooltip>

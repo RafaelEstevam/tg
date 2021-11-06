@@ -33,7 +33,7 @@ import { PowerSettingsNew } from '@material-ui/icons';
 
 import styled from 'styled-components';
 
-import {COLORS} from '../styles/colors';
+import { COLORS } from '../styles/colors';
 
 const StudentComponent = styled('div')`
   display: flex;
@@ -61,13 +61,19 @@ const CustomList = styled(List)`
 `
 
 const CustomListItem = styled(ListItem)`
-  border-radius: 0px 5px 5px 0px;
+  border-radius: 0px ${COLORS.borderRadius} ${COLORS.borderRadius} 0px;
   :hover{
-    background: ${COLORS.primary};
+    background: ${COLORS.primary}20;
     svg, span{
-      color: ${COLORS.light0};
+      color: ${COLORS.primary};
     }
   }
+`
+
+const CustomDrawer = styled(Drawer)`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `
 
 const Header = ({ open, handleDrawerOpen, handleDrawerClose }) => {
@@ -107,12 +113,12 @@ const Header = ({ open, handleDrawerOpen, handleDrawerClose }) => {
           <AccessibilityBar />
           <StudentComponent>
             <StudentWrapper>
-              <Typography className="primary-text">
+              <Typography className="primary-text desktop">
                 <b>
                   Aluno X
                 </b>
               </Typography>
-              <Typography variant="subtitle2" className="main-text">
+              <Typography variant="subtitle2" className="main-text desktop">
                 alunox@alunox.com
               </Typography>
             </StudentWrapper>
@@ -122,7 +128,7 @@ const Header = ({ open, handleDrawerOpen, handleDrawerClose }) => {
           </StudentComponent>
         </Toolbar>
       </AppBar>
-      <Drawer
+      <CustomDrawer
         className={`${classes.drawer}`}
         variant="persistent"
         anchor="left"
@@ -131,24 +137,25 @@ const Header = ({ open, handleDrawerOpen, handleDrawerClose }) => {
           paper: `${classes.drawerPaper} second-background`,
         }}
       >
-        <div className={classes.drawerHeader}>
-          <CustonTitle>
-            <span className="main-text">EDUCA</span>
-            <span className="primary-text">LYTICS</span>
-          </CustonTitle>
-          <IconButton onClick={handleDrawerClose} className="main-text">
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
-        </div>
-        {/* <Divider /> */}
-        <CustomList>
-          <CustomListItem className="main-text" button onClick={() => { history.push("/dashboard") }}>
-            <ListItemIcon>
-              <PieChart />
-            </ListItemIcon>
-            <ListItemText primary={"Dashboard"} />
-          </CustomListItem>
-          {/* <CustomListItem className="main-text" button onClick={() => { history.push("/kanban") }}>
+        <div>
+          <div className={classes.drawerHeader}>
+            <CustonTitle>
+              <span className="main-text">EDUCA</span>
+              <span className="primary-text">LYTICS</span>
+            </CustonTitle>
+            <IconButton onClick={handleDrawerClose} className="main-text">
+              {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            </IconButton>
+          </div>
+          {/* <Divider /> */}
+          <CustomList>
+            <CustomListItem className="main-text" button onClick={() => { history.push("/dashboard") }}>
+              <ListItemIcon>
+                <PieChart />
+              </ListItemIcon>
+              <ListItemText primary={"Dashboard"} />
+            </CustomListItem>
+            {/* <CustomListItem className="main-text" button onClick={() => { history.push("/kanban") }}>
             <ListItemIcon>
               <DashboardIcon />
             </ListItemIcon>
@@ -174,15 +181,28 @@ const Header = ({ open, handleDrawerOpen, handleDrawerClose }) => {
               <ListItemText primary={"Usuários"} />
             </CustomListItem>
           )} */}
-          <CustomListItem className="main-text" button onClick={() => { history.push(`/profile/edit`) }}>
-            <ListItemIcon>
-              <GroupIcon />
-            </ListItemIcon>
-            <ListItemText primary={"Perfil de usuário"} />
-          </CustomListItem>
-        </CustomList>
+            <CustomListItem className="main-text" button onClick={() => { history.push(`/profile/edit`) }}>
+              <ListItemIcon>
+                <GroupIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Perfil de usuário"} />
+            </CustomListItem>
+          </CustomList>
+        </div>
+        <div className="mobile">
+        <StudentWrapper style={{padding: '10px', background: COLORS.dark0, marginRight: '0px', alignItems: 'flex-start'}}>
+          <Typography className="primary-text mobile">
+            <b>
+              Aluno X
+            </b>
+          </Typography>
+          <Typography variant="subtitle2" className="main-text mobile">
+            alunox@alunox.com
+          </Typography>
+        </StudentWrapper>
+        </div>
         {/* <Divider /> */}
-      </Drawer>
+      </CustomDrawer>
     </>
   )
 }

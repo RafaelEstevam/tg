@@ -62,6 +62,7 @@ const DashboardMenuWrapper = styled('div')`
 
 const DashboardMenuItem = styled(Button)`
   padding: 4px 10px;
+  border-radius: ${COLORS.borderRadius};
   span{
     text-transform: capitalize;
   }
@@ -110,7 +111,7 @@ function Home() {
         <Typography variant="h5" className="primary-text">
           Dashboard
         </Typography>
-        <Typography variant="subtitle2" className="main-text">
+        <Typography variant="subtitle2" className="main-text desktop">
           Último acesso: 20 de junho de 2021
         </Typography>
       </PageTitle>
@@ -164,13 +165,13 @@ function Home() {
               <MetricCardComponent title={'Nota'} subtitle={'parcial'} value={currentDash?.review} icon={<AcUnitSharp />} background={COLORS.primary} />
             </Grid>
             <Grid item lg={3} xs={6}>
-              <MetricCardComponent title={'Aulas'} subtitle={'assistidas'} value={currentDash?.class} background={COLORS.secondary} />
+              <MetricCardComponent title={'Aulas'} subtitle={'assistidas'} value={currentDash?.class} background={COLORS.primary} />
             </Grid>
             <Grid item lg={3} xs={6}>
-              <MetricCardComponent title={'Nº tarefas'} subtitle={'entregues'} value={currentDash?.tasks} background={COLORS.success} />
+              <MetricCardComponent title={'Nº tarefas'} subtitle={'entregues'} value={currentDash?.tasks} background={COLORS.primary} />
             </Grid>
             <Grid item lg={3} xs={6}>
-              <MetricCardComponent title={'Nº trabalhos'} subtitle={'entregues'} value={currentDash?.jobs} background={COLORS.danger} />
+              <MetricCardComponent title={'Nº trabalhos'} subtitle={'entregues'} value={currentDash?.jobs} background={COLORS.primary} />
             </Grid>
             <Grid item lg={6} xs={12}>
               <CarrosselItemComponent carrossel={currentDash?.carrossel} setCurrentIndex={setCurrentIndex} currentIndex={currentIndex}/>

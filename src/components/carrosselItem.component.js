@@ -40,7 +40,7 @@ const CarrosselWrapper = styled('div')`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
+  border-radius: ${COLORS.borderRadius};
 `;
 
 const CarrosselValue = styled(Typography)`
@@ -69,7 +69,7 @@ const CarrosselItemComponent = ({ title, subtitle, value, label, index, currentI
       <CardWrapper>
         <Typography><b>{title}</b></Typography>
         <CarrosselWrapper nightMode={accessibility.nightMode}>
-          <CarrosselValue variant="h2">{value}</CarrosselValue>
+          <CarrosselValue variant="h3" className="main-font-style main-font-type">{value}</CarrosselValue>
           <Typography>{label}</Typography>
         </CarrosselWrapper>
         <Typography><b>{subtitle}</b></Typography>

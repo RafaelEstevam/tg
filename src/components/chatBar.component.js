@@ -96,7 +96,7 @@ const MessageItemWrapper = styled('div')`
 const MessageItem = styled('div')`
     background: ${props => props.isYou ? COLORS.primary : COLORS.secondary};
     padding: 15px;
-    border-radius: 10px;
+    border-radius: ${COLORS.borderRadius};
     max-width: 70%;
     width: max-content;
 `

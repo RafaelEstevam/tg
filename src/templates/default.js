@@ -34,9 +34,9 @@ export default function PersistentDrawerLeft({ children }) {
             
           />
           <main
-            className={clsx(classes.content, {
+            className={`${clsx(classes.content, {
               [classes.contentShift]: open,
-            })}
+            })} main-background`}
           >
             <div>
               <div className={classes.drawerHeader} />
