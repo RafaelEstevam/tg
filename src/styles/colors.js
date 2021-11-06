@@ -13,7 +13,7 @@
 const primary = "#da3941" 
 const secondary = "#39A0DA"
 const danger = "#E35C5C"
-const warning = "rgba(248, 148, 6, 0.9)"
+const warning = "#fcff3a"
 const success = "#39DA79"
 const info = "#8137f7e6"
 const dark1 = "#1b2138"
