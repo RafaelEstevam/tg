@@ -22,14 +22,17 @@ const AchievmentsList = styled('div')`
     max-width: 250px;
     margin-top: 10px;
 `
-const AchievmentsItem = styled(IconButton)`
-    display: block;
+const AchievmentsItem = styled('div')`
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 100%;
     height: 40px;
     width: 40px;
     // overflow: hidden;
     padding: 0px;
     background: ${COLORS.primary};
+    color: ${COLORS.light0};
     svg{
         color: ${COLORS.light0};
     }

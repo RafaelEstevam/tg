@@ -62,6 +62,10 @@ const CustomList = styled(List)`
 
 const CustomListItem = styled(ListItem)`
   border-radius: 0px ${COLORS.borderRadius} ${COLORS.borderRadius} 0px;
+  color: ${props => props.accessibility ? COLORS.light0 : COLORS.gray0};
+  svg, span{
+    color: ${props => props.accessibility ? COLORS.light0 : COLORS.gray0};
+  }
   :hover{
     background: ${COLORS.primary}20;
     svg, span{
@@ -83,6 +87,7 @@ const Header = ({ open, handleDrawerOpen, handleDrawerClose }) => {
   const theme = useTheme();
 
   const decode = useSelector(state => state.decode);
+  const accessibility = useSelector(state => state.accessibility);
 
   const handleLogout = () => {
     resetStorage()
@@ -149,7 +154,7 @@ const Header = ({ open, handleDrawerOpen, handleDrawerClose }) => {
           </div>
           {/* <Divider /> */}
           <CustomList>
-            <CustomListItem className="main-text" button onClick={() => { history.push("/dashboard") }}>
+            <CustomListItem button onClick={() => { history.push("/dashboard") }} accessibility={accessibility.nightMode}>
               <ListItemIcon>
                 <PieChart />
               </ListItemIcon>
@@ -181,7 +186,7 @@ const Header = ({ open, handleDrawerOpen, handleDrawerClose }) => {
               <ListItemText primary={"Usuários"} />
             </CustomListItem>
           )} */}
-            <CustomListItem className="main-text" button onClick={() => { history.push(`/profile/edit`) }}>
+            <CustomListItem button onClick={() => { history.push(`/profile/edit`) }} accessibility={accessibility.nightMode}>
               <ListItemIcon>
                 <GroupIcon />
               </ListItemIcon>
