@@ -19,7 +19,7 @@ import MetricCardComponent from 'components/metricCard.component';
 import BarChartComponent from 'components/barChart.component';
 import CarrosselItemComponent from 'components/carrosselItem.component';
 
-import {ChatBar} from 'components/chatBar.component';
+import { ChatBar } from 'components/chatBar.component';
 
 import { AcUnitSharp } from '@material-ui/icons';
 
@@ -99,7 +99,7 @@ function Home() {
     handleSetDash(item);
   }
 
-  
+
 
   useEffect(() => {
     handleSetDash(data[0]);
@@ -141,7 +141,7 @@ function Home() {
                 <CardContent>
                   <CardContent>
                     <XpProgressComponent experience={currentDash?.experience} />
-                    <AchievementsComponent achievements={currentDash?.achievements}/>
+                    <AchievementsComponent achievements={currentDash?.achievements} />
                     <PodiumComponent podium={currentDash?.podium} />
                   </CardContent>
                 </CardContent>
@@ -159,7 +159,7 @@ function Home() {
             </Grid> */}
           </Grid>
         </Grid>
-        <Grid item lg={8} sm={8} xl={9} xs={12}>
+        <Grid item lg={8} sm={8} xl={8} xs={12}>
           <Grid container spacing={3}>
             <Grid item lg={3} xs={6}>
               <MetricCardComponent title={'Nota'} subtitle={'parcial'} value={currentDash?.review} icon={<AcUnitSharp />} background={COLORS.primary} />
@@ -174,7 +174,7 @@ function Home() {
               <MetricCardComponent title={'Nº trabalhos'} subtitle={'entregues'} value={currentDash?.jobs} background={COLORS.primary} />
             </Grid>
             <Grid item lg={6} xs={12}>
-              <CarrosselItemComponent carrossel={currentDash?.carrossel} setCurrentIndex={setCurrentIndex} currentIndex={currentIndex}/>
+              <CarrosselItemComponent carrossel={currentDash?.carrossel} setCurrentIndex={setCurrentIndex} currentIndex={currentIndex} />
             </Grid>
             <Grid item lg={6} xs={12}>
               <CustomCard height={'360px'} className="primary-background">
@@ -207,7 +207,7 @@ function Home() {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item lg={1} sm={8} xl={9} xs={12}>
+        <Grid item lg={1} sm={8} xl={1} xs={12}>
           <ChatBar />
         </Grid>
       </Grid>
