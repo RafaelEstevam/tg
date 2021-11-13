@@ -34,7 +34,7 @@ const AchievmentsItem = styled('div')`
     background: ${COLORS.primary};
     color: ${COLORS.light0};
     svg{
-        color: ${COLORS.light0};
+        color: ${COLORS.light0} !important;
     }
     // img{
     //     width: 100%;
