@@ -17,11 +17,11 @@ import ActivityComponent from 'components/activity.component';
 import MetricsComponent from 'components/metricsCarrossel.compoment';
 import MetricCardComponent from 'components/metricCard.component';
 import BarChartComponent from 'components/barChart.component';
-import CarrosselItemComponent from 'components/carrosselItem.component';
-
+import { CarrosselItem, CarrosselItemComponent } from 'components/carrosselItem.component';
+import {PageTitleComponent} from 'components/pageTitle.component';
 import { ChatBar } from 'components/chatBar.component';
 
-import { AcUnitSharp } from '@material-ui/icons';
+import { EmojiEvents } from '@material-ui/icons';
 
 import { COLORS } from '../../styles/colors';
 
@@ -36,14 +36,6 @@ const ChartWrapper = styled('div')`
   align-items: center;
   justify-content: space-between;
 `;
-
-const PageTitle = styled('div')`
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  gap: 15px;
-`
 
 const DashboardMenu = styled('div')`
   margin-bottom: 20px;
@@ -99,22 +91,13 @@ function Home() {
     handleSetDash(item);
   }
 
-
-
   useEffect(() => {
     handleSetDash(data[0]);
   }, []);
 
   return (
     <>
-      <PageTitle>
-        <Typography variant="h5" className="primary-text">
-          Dashboard
-        </Typography>
-        <Typography variant="subtitle2" className="main-text desktop">
-          Último acesso: 20 de junho de 2021
-        </Typography>
-      </PageTitle>
+      <PageTitleComponent title="Dashboard" subtitle="Último acesso em 20 de junho de 2021" />
 
       <DashboardMenu>
         <DashboardMenuWrapper>
@@ -134,8 +117,8 @@ function Home() {
       </DashboardMenu>
 
       <Grid container spacing={3}>
-        <Grid item lg={3} sm={4} xl={3} xs={12}>
-          <Grid container spacing={3}>
+        <Grid item lg={3} sm={3} xl={3} xs={12}>
+          <Grid container>
             <Grid item lg={12} xs={12}>
               <CustomCard className="second-background main-text">
                 <CardContent>
@@ -159,10 +142,10 @@ function Home() {
             </Grid> */}
           </Grid>
         </Grid>
-        <Grid item lg={8} sm={8} xl={8} xs={12}>
+        <Grid item lg={9} sm={9} xl={9} xs={12}>
           <Grid container spacing={3}>
             <Grid item lg={3} xs={6}>
-              <MetricCardComponent title={'Nota'} subtitle={'parcial'} value={currentDash?.review} icon={<AcUnitSharp />} background={COLORS.primary} />
+              <MetricCardComponent title={'Nota'} subtitle={'parcial'} value={currentDash?.review} background={COLORS.primary} />
             </Grid>
             <Grid item lg={3} xs={6}>
               <MetricCardComponent title={'Aulas'} subtitle={'assistidas'} value={currentDash?.class} background={COLORS.primary} />
@@ -174,7 +157,7 @@ function Home() {
               <MetricCardComponent title={'Nº trabalhos'} subtitle={'entregues'} value={currentDash?.jobs} background={COLORS.primary} />
             </Grid>
             <Grid item lg={6} xs={12}>
-              <CarrosselItemComponent carrossel={currentDash?.carrossel} setCurrentIndex={setCurrentIndex} currentIndex={currentIndex} />
+              <CarrosselItem carrossel={currentDash?.carrossel} setCurrentIndex={setCurrentIndex} currentIndex={currentIndex} />
             </Grid>
             <Grid item lg={6} xs={12}>
               <CustomCard height={'360px'} className="primary-background">
@@ -190,26 +173,25 @@ function Home() {
                 height={'250px'}
                 title={currentDash?.emphasis?.title}
                 subtitle={currentDash?.emphasis?.subtitle}
-                value={7.5}
-                icon={<AcUnitSharp />}
+                icon={<EmojiEvents />}
                 background={COLORS.primary}
               />
             </Grid>
             <Grid item lg={8} xs={12}>
-              <CustomCard height={'250px'} className="second-background main-text">
-                {/* <CardWrapper>
-                  <Typography>Dados de conversa</Typography>
-                  <div style={{ width: '100%' }}>
-
-                  </div>
-                </CardWrapper> */}
+              <CustomCard height={'250px'} className="second-background main-text" style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+                {currentDash && currentDash?.chat && (
+                  <>
+                    <CarrosselItemComponent title="Interações" subtitle="Nas atividades" lable="Nº de Interações" value={currentDash?.chat[0]?.value} show />
+                    <CarrosselItemComponent title="Mensagens" subtitle="Para o professor" lable="Nº de mensagens" value={currentDash?.chat[1]?.value} show />
+                  </>
+                )}
               </CustomCard>
             </Grid>
           </Grid>
         </Grid>
-        <Grid item lg={1} sm={8} xl={1} xs={12}>
+        {/* <Grid item lg={1} sm={8} xl={1} xs={12}>
           <ChatBar />
-        </Grid>
+        </Grid> */}
       </Grid>
     </>
   );

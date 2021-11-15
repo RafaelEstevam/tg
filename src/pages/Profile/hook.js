@@ -78,7 +78,7 @@ const TaskHook = () => {
         API.get(`/login/email`,{params: {email: decode.email}}).then((response) => {
           setLoginId(response.data.id);
         }).catch((e) => {
-          enqueueSnackbar('Login não encontrado', {variant: "error"});
+          // enqueueSnackbar('Login não encontrado', {variant: "error"});
         })
       }
     }, []);

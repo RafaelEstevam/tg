@@ -104,6 +104,11 @@ export default createGlobalStyle`
         color: ${COLORS.light0};
       }
     }
+
+    input, select{
+      color: ${COLORS.light0};
+    }
+    
   }
 
  

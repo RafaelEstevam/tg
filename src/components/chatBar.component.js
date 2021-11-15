@@ -193,7 +193,7 @@ export const ChatBar = ({ children, height, className }) => {
 
     return (
         <>
-            <CustomCard className="second-background main-text">
+            <CustomCard className="second-background main-text" style={{position: 'fixed', marginTop: '20px', minHeight: 'calc(100vh - 110px)'}}>
                 <CardWrapper>
                     <GamingTitle>Chat</GamingTitle>
                     {chatOnline?.map((item) => (

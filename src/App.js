@@ -13,17 +13,24 @@ import history from './services/history';
 
 import DefaultContext from './stores/defaultContext';
 
+
 const theme = createTheme({
   palette: {
+    success: {
+      main : "#bac778",
+    },
     primary: {
       main: COLORS.primary,
     },
     secondary: {
       main: COLORS.secondary,
     },
-    default:{
-      main: COLORS.gray0
-    }
+    neutral: {
+      main: '#64748B',
+      contrastText: '#fff',
+      dark: "rgb(152, 39, 45)",
+      light: "rgb(225, 96, 103)"
+    },
   },
   typography: {
     fontSize: 12,
@@ -39,14 +46,7 @@ const theme = createTheme({
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
     ].join(','),
-  },
-  overrides: {
-    MuiButton: {
-      text: {
-        color: 'white',
-      },
-    },
-  },
+  }
 });
 
 function App() {
@@ -57,6 +57,7 @@ function App() {
   return (
     <DefaultContext.Provider value={defaultContext}>
       <ThemeProvider theme={theme}>
+        {console.log(theme)}
         <Router history={history}>
           <Routes />
           <GlobalStyle theme={accessibility} />

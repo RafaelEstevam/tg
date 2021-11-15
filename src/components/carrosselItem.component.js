@@ -60,12 +60,12 @@ const CarrosselButton = styled(IconButton)`
   }
 `
 
-const CarrosselItemComponent = ({ title, subtitle, value, label, index, currentIndex }) => {
+export const CarrosselItemComponent = ({ title, subtitle, value, label, index, currentIndex, show }) => {
 
   const accessibility = useSelector(state => state.accessibility);
 
   return (
-    <StyledCarrosselItem index={index} currentIndex={currentIndex}>
+    <StyledCarrosselItem index={show || index} currentIndex={show || currentIndex}>
       <CardWrapper>
         <Typography><b>{title}</b></Typography>
         <CarrosselWrapper nightMode={accessibility.nightMode}>
@@ -78,7 +78,7 @@ const CarrosselItemComponent = ({ title, subtitle, value, label, index, currentI
   )
 }
 
-export default function CarrosselItem({ carrossel, currentIndex, setCurrentIndex }) {
+export function CarrosselItem({ carrossel, currentIndex, setCurrentIndex }) {
 
   const [carrosselLength, setCarrosselLength] = useState(0);
 

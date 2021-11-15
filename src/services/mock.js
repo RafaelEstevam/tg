@@ -84,8 +84,8 @@ export default function mock(){
             ],
             emphasis: { title: 'Destaque', subtitle: 'Aluno participativo' },
             chat: [
-                { title: 'Interações nas aulas', value: 59 },
-                { title: 'Mensagens para o professor', value: 45 },
+                { title: 'Interações nas aulas', value: 19 },
+                { title: 'Mensagens para o professor', value: 25 },
             ],
             activities: [
                 { title: 'Atividade 1', deadline: '20/06/2021' },

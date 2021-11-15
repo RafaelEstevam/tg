@@ -12,7 +12,9 @@ const MetricContent = styled(Typography)`
     padding: 20px;
     border-radius: 100%;
     color:${props => props.accessibility ? COLORS.warning : COLORS.light0 + '60'};
-
+    svg {
+        font-size: 120px
+    }
     // p{
     //     font-size: 80px;
     //     line-height: 50px;
@@ -53,6 +55,7 @@ export default function Metric({ height = '180px', background = '#fc0', icon, ti
             <div style={{position: 'relative', zIndex: '3', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%', justifyContent: 'space-between'}}>
                 <MetricTitle>{title}</MetricTitle>
                 <MetricContent accessibility={accessibility.nightMode}>
+                    {icon}
                     <Typography variant="h3" className='main-font-style main-font-type'>{value}</Typography>
                 </MetricContent>
                 <MetricTitle>{subtitle}</MetricTitle>
