@@ -14,6 +14,12 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
+import { App as Notify } from '../../notification/App';
+
+import Push from 'push.js'
+
+
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -43,22 +49,27 @@ export default function SignIn() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
+  const handlePushNotification = () => {
+    // Notify.start();
+    Push.create("teste");
+  }
+
   const handleSubmit = async () => {
-    const data ={
+    const data = {
       email,
       password
     }
 
     axios.post(process.env.REACT_APP_API + '/token', data).then((response) => {
-      dispatch({type: 'SET_TOKEN', token: response.data.token});
-      dispatch({type: 'SET_DECODE', decode: decodeToken(response.data.token)});
+      dispatch({ type: 'SET_TOKEN', token: response.data.token });
+      dispatch({ type: 'SET_DECODE', decode: decodeToken(response.data.token) });
       setTokenInStorage(response.data.token);
     }).then(() => {
       history.push("/kanban");
     }).catch((e) => {
-      enqueueSnackbar('Não foi possível fazer login. Tente novamente.', {variant: "error"});
+      enqueueSnackbar('Não foi possível fazer login. Tente novamente.', { variant: "error" });
     });
-    
+
   }
 
   return (
@@ -98,7 +109,7 @@ export default function SignIn() {
             onChange={(e) => setPassword(e.target.value)}
             autoComplete="current-password"
           />
-          
+
           <Button
             fullWidth
             variant="contained"
@@ -108,6 +119,18 @@ export default function SignIn() {
           >
             Sign In
           </Button>
+
+          <Button
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            onClick={() => handlePushNotification()}
+          >
+            notification
+          </Button>
+
+
         </div>
       </div>
     </Container>

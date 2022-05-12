@@ -1,17 +1,18 @@
-import react, {useEffect, useState} from 'react';
+import react, { useEffect, useState } from 'react';
 import { Router } from 'react-router-dom';
 import GlobalStyle from './styles/global';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { createTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 
-import {COLORS} from './styles/colors';
+import { COLORS } from './styles/colors';
 
 import Routes from './routes';
 import history from './services/history';
 
 import DefaultContext from './stores/defaultContext';
+
 
 const theme = createTheme({
   palette: {
@@ -21,7 +22,7 @@ const theme = createTheme({
     secondary: {
       main: COLORS.secondary,
     },
-    default:{
+    default: {
       main: COLORS.gray0
     }
   },
@@ -54,6 +55,9 @@ function App() {
   const [defaultContext, setDefaultContext] = useState({});
   const accessibility = useSelector(state => state.accessibility);
 
+  console.log(window.onfocus)
+  console.log(document.hasFocus())
+
   return (
     <DefaultContext.Provider value={defaultContext}>
       <ThemeProvider theme={theme}>
@@ -63,7 +67,7 @@ function App() {
         </Router>
       </ThemeProvider>
     </DefaultContext.Provider>
-    
+
   );
 }
 
