@@ -60,15 +60,17 @@ export default function SignIn() {
       password
     }
 
-    axios.post(process.env.REACT_APP_API + '/token', data).then((response) => {
-      dispatch({ type: 'SET_TOKEN', token: response.data.token });
-      dispatch({ type: 'SET_DECODE', decode: decodeToken(response.data.token) });
-      setTokenInStorage(response.data.token);
-    }).then(() => {
-      history.push("/kanban");
-    }).catch((e) => {
-      enqueueSnackbar('Não foi possível fazer login. Tente novamente.', { variant: "error" });
-    });
+    history.push("/dashboard");
+
+    // axios.post(process.env.REACT_APP_API + '/token', data).then((response) => {
+    //   dispatch({type: 'SET_TOKEN', token: response.data.token});
+    //   dispatch({type: 'SET_DECODE', decode: decodeToken(response.data.token)});
+    //   setTokenInStorage(response.data.token);
+    // }).then(() => {
+    //   history.push("/dashboard");
+    // }).catch((e) => {
+    //   enqueueSnackbar('Não foi possível fazer login. Tente novamente.', {variant: "error"});
+    // });
 
   }
 

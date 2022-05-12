@@ -40,7 +40,7 @@ const CarrosselWrapper = styled('div')`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
+  border-radius: ${COLORS.borderRadius};
 `;
 
 const CarrosselValue = styled(Typography)`
@@ -60,16 +60,16 @@ const CarrosselButton = styled(IconButton)`
   }
 `
 
-const CarrosselItemComponent = ({ title, subtitle, value, label, index, currentIndex }) => {
+export const CarrosselItemComponent = ({ title, subtitle, value, label, index, currentIndex, show }) => {
 
   const accessibility = useSelector(state => state.accessibility);
 
   return (
-    <StyledCarrosselItem index={index} currentIndex={currentIndex}>
+    <StyledCarrosselItem index={show || index} currentIndex={show || currentIndex}>
       <CardWrapper>
         <Typography><b>{title}</b></Typography>
         <CarrosselWrapper nightMode={accessibility.nightMode}>
-          <CarrosselValue variant="h2">{value}</CarrosselValue>
+          <CarrosselValue variant="h3" className="main-font-style main-font-type">{value}</CarrosselValue>
           <Typography>{label}</Typography>
         </CarrosselWrapper>
         <Typography><b>{subtitle}</b></Typography>
@@ -78,7 +78,7 @@ const CarrosselItemComponent = ({ title, subtitle, value, label, index, currentI
   )
 }
 
-export default function CarrosselItem({ carrossel, currentIndex, setCurrentIndex }) {
+export function CarrosselItem({ carrossel, currentIndex, setCurrentIndex }) {
 
   const [carrosselLength, setCarrosselLength] = useState(0);
 

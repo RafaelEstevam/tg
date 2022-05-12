@@ -32,6 +32,30 @@ export default createGlobalStyle`
     }
   }
 
+  .main-font-type{
+    font-family: 'Impact';
+  }
+
+  .main-font-style{
+    transform: skew(-20deg);
+  }
+
+  .mobile{
+    display: none;
+  }
+  .desktop{
+    display: block;
+  }
+  
+  @media(max-width: 980px){
+    .mobile{
+      display: block;
+    }
+    .desktop{
+      display: none;
+    }
+  }
+
   .main-background{
     background: ${COLORS.light1};
   }
@@ -80,6 +104,11 @@ export default createGlobalStyle`
         color: ${COLORS.light0};
       }
     }
+
+    input, select{
+      color: ${COLORS.light0};
+    }
+    
   }
 
  

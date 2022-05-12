@@ -10,11 +10,18 @@ import {
   Slider,
   Typography
 } from '@material-ui/core';
+import { useSelector, useDispatch } from 'react-redux';
 import {status} from 'services/enun';
 import Select from 'components/select.component';
 import TaskHook from './hook.js';
+import CustomCard from 'components/card.component.js';
+import {PageTitleComponent} from 'components/pageTitle.component';
+
+
 
 const TaskVkew = (props) => {
+
+  const accessibility = useSelector(state => state.accessibility);
 
   const {
     id,
@@ -32,12 +39,10 @@ const TaskVkew = (props) => {
       onSubmit={(e) => handleOnSubmit(e)}
       {...props}
     >
-      <Card>
-        <CardHeader
-          title="Perfil de usuário"
-          subheader="Complete seu cadastro"
-        />
-        <Divider />
+      <PageTitleComponent title="Perfil do usuário" />
+
+      <CustomCard mt className="second-background">
+        
         <CardContent>
           <Grid
             container
@@ -46,6 +51,8 @@ const TaskVkew = (props) => {
             <Grid item md={6} xs={12}>
               <TextField
                 fullWidth
+                color={accessibility.nightMode ? 'neutral' : 'default'}
+                focused={accessibility.nightMode}
                 label="Nome"
                 name="name"
                 minRows={1}
@@ -58,6 +65,8 @@ const TaskVkew = (props) => {
             <Grid item md={6} xs={12}>
               <TextField
                 fullWidth
+                color={accessibility.nightMode ? 'primary' : 'primary'}
+                focused={accessibility.nightMode}
                 label="CPF"
                 name="doc"
                 minRows={1}
@@ -70,6 +79,8 @@ const TaskVkew = (props) => {
             <Grid item md={3} xs={12}>
               <TextField
                 fullWidth
+                color={accessibility.nightMode ? 'primary' : 'primary'}
+                focused={accessibility.nightMode}
                 label="Gênero"
                 name="gender"
                 onChange={handleChange}
@@ -88,17 +99,24 @@ const TaskVkew = (props) => {
             <Grid item md={3} xs={12}>
               <TextField
                 fullWidth
+                color={accessibility.nightMode ? 'primary' : 'primary'}
+                focused={accessibility.nightMode}
                 label="Aniversário"
                 name="birthday"
                 type="date"
                 onChange={handleChange}
                 value={'' || values.birthday}
                 variant="outlined"
+                InputLabelProps={{
+                  shrink: true,
+                }}
               />
             </Grid>
             <Grid item md={3} xs={12}>
               <TextField
                 fullWidth
+                color={accessibility.nightMode ? 'primary' : 'primary'}
+                focused={accessibility.nightMode}
                 label="Telefone"
                 name="phone"
                 onChange={handleChange}
@@ -109,6 +127,8 @@ const TaskVkew = (props) => {
             <Grid item md={3} xs={12}>
               <TextField
                 fullWidth
+                color={accessibility.nightMode ? 'primary' : 'primary'}
+                focused={accessibility.nightMode}
                 label="Celular"
                 name="mobile"
                 onChange={handleChange}
@@ -136,7 +156,7 @@ const TaskVkew = (props) => {
             Salvar perfil
           </Button>
         </Box>
-      </Card>
+      </CustomCard>
     </form>
   );
 };

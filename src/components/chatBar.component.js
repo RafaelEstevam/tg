@@ -96,7 +96,7 @@ const MessageItemWrapper = styled('div')`
 const MessageItem = styled('div')`
     background: ${props => props.isYou ? COLORS.primary : COLORS.secondary};
     padding: 15px;
-    border-radius: 10px;
+    border-radius: ${COLORS.borderRadius};
     max-width: 70%;
     width: max-content;
 `
@@ -193,7 +193,7 @@ export const ChatBar = ({ children, height, className }) => {
 
     return (
         <>
-            <CustomCard className="second-background main-text">
+            <CustomCard className="second-background main-text" style={{position: 'fixed', marginTop: '20px', minHeight: 'calc(100vh - 110px)'}}>
                 <CardWrapper>
                     <GamingTitle>Chat</GamingTitle>
                     {chatOnline?.map((item) => (
